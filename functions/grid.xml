@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+	<head>
+		<column width="*" type="combo" align="left" filter="true" sort="str" xmlcontent="1">Filtering Mode
+			<option value="1">one</option>
+			<option value="2">two</option>
+			<option value="3">three</option>
+			<option value="4">four</option>
+			<option value="5">five</option>
+			<option value="6">six</option>
+			<option value="7">seven</option>
+			<option value="8">eight</option>
+			<option value="9">nine</option>
+			<option value="10">ten</option>
+		</column>
+		<settings>
+			<colwidth>px</colwidth>
+		</settings>
+	</head>
+ 	<row id="1">
+		<cell>1</cell>
+	</row>
+	<row id="2">
+		<cell>2</cell>
+	</row>
+</rows>

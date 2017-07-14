@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<menu>
+
+	<item id="produce" text="Produce">
+		<item id="produce_specs" text="Specifications" img="veggies.png" 	imgdis="save_dis.gif" complex="true"/>
+		<item id="produce_stock" text="Stock Take" 	   img="icon_grid.gif" 	imgdis="save_dis.gif" complex="true"/>
+	</item>	
+	
+	<item id="crops" text="Crops">
+		<item id="planted_crops" 	text="Planted Crops" 	img="veggies.png" 	imgdis="save_dis.gif" complex="true"/>
+		<item id="plant_new_crop" 	text="Plant New Crop" 	img="close.gif" imgdis="save_dis.gif" complex="true"/>
+	</item>	
+	
+	<item id="beds" text="Beds">
+		<item id="bed_specification" 	text="Specifications" 	img="veggies.png" 	imgdis="save_dis.gif" complex="true"/>
+	</item>	
+	
+	<item id="schedule" text="Schedule">
+		<item id="scheduled_by_date" 	text="By Date" 	img="gantt_1.jpg" imgdis="save_dis.gif" complex="true"/>
+		<item id="scheduled_by_bed" 	text="By Bed" 	img="gantt_2.jpg" imgdis="save_dis.gif" complex="true"/>
+	</item>	
+	
+	<item id="reports_grp" text="Reports">
+		<item id="employee_reports" text="Employee Reports" img="icon_grid.gif" imgdis="open_dis.gif" complex="true">
+			<item id="report_tbd1" 	text="(TBD)Report 1" 	img="close.gif" 	imgdis="save_dis.gif" complex="true"/>
+			<item id="report_tbd2" 	text="(TBD)Report 2" 	img="close.gif" 	imgdis="save_dis.gif" complex="true"/>
+		</item>
+	</item>	
+
+</menu>

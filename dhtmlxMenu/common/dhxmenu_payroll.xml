@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<menu>
+
+	<item id="payroll_grp" text="PAYROLL" img="payroll1.jpg">
+		<item id="payroll" text="Payroll" img="payroll1.jpg" imgdis="open_dis.gif" complex="true">
+			<item id="generate_payrolls" text="All Employees Payroll" img="" imgdis="save_dis.gif" complex="true"/>
+			<item id="fte_advance" text="FTE Advance" img="" imgdis="save_dis.gif" complex="true"/>
+		</item>	
+
+		<item id="Pay Slips" text="PAYSLIPS" img="payroll2.jpg" imgdis="" complex="true">
+			<item id="casuals_payslips" text="Casuals Payslips" img="salary1.jpg" imgdis="" complex="true"/>
+			<item id="fte_payslips" text="FTE Payslips" img="salary2.jpg" imgdis="payroll7.jpg" complex="true"/>
+		</item>
+	</item>	
+	<item id="reports_grp" text="Reports" img="reports4.jpg">
+		<item id="employee_reports" text="Employee Reports" img="reports7.jpg" imgdis="open_dis.gif" complex="true">
+			<item id="report_tbd1" text="(TBD)Report 1" img="close.gif" imgdis="save_dis.gif" complex="true"/>
+			<item id="report_tbd2" text="(TBD)Report 2" img="close.gif" imgdis="save_dis.gif" complex="true"/>
+		</item>
+	</item>	
+
+</menu>

@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<menu>
+	<item id="employee" text="HR" img="employees1.jpg" imgdis="employees1.jpg" complex="true">
+		<item id="master_roll" text="Master Roll" img="employee2.png" imgdis="open_dis.gif" complex="true">
+			<item id="employee_master_roll" text="Employees List" img="employees2.jpg" imgdis="save_dis.gif" complex="true"/>
+			<!--<item id="employee_role" text="Role Change" img="employees2.jpg" imgdis="save_dis.gif" complex="true"/>--> 
+                        <item id="employee_residency" text="Residency" img="house2.jpg" imgdis="employee_new1.png" complex="true"/>                                               
+                        <item id="onboard_new_employee" text="Onboard Employee" img="employee_new2.jpg" imgdis="employee_new1.png" complex="true"/>
+		</item>
+		<item id="salary_group" text="Salary Mgmt." img="salary1.jpg" imgdis="open_dis.gif" complex="true">
+			<item id="salary_list" text="Add/Edit Salary" img="list4.jpg" imgdis="save_dis.gif" complex="true"/>
+                        <item id="salary_expense_allocation" text="Salary Expense Allocation" img="expense1.png" imgdis="open_dis.gif" complex="true"></item>
+		</item>
+		<item id="attendance_mgmt" text="Attendance" img="attendance1.jpg" imgdis="save_dis.gif" complex="true"/>	
+		<item id="work_assignment" text="Work Assignment" img="work1.jpg" imgdis="open_dis.gif" complex="true">
+			<item id="parttime_mgmt" text="Part Time Add/Edit" img="list5.jpg" imgdis="save_dis.gif" complex="true"/>
+			<item id="other_work" text="Other Work Add/Edit" img="list2.jpg" imgdis="save_dis.gif" complex="true"/>"/>
+		</item>
+                <item id="loans_group" text="Loans" img="loan2.jpg" imgdis="open_dis.gif" complex="true">
+                    <item id="casuals_deductions" text="Loans (Casuals)" img="loan1.png" imgdis="" complex="true"/>
+                    <item id="fte_loans" text="Loans (FTE)" img="loan2.png" imgdis="" complex="true">
+                        <item id="fte_loan" text="Add/View Loans" img="grid1.jpg" imgdis="" complex="true"/>
+                        <item id="make_loan_payments" text="Make a Payment" img="loanpmt1.png" imgdis="" complex="true"/>
+                        <item id="loan_payments_schedule" text="Payments Schedule" img="list6.jpg" imgdis="" complex="true"/>
+                    </item>
+                </item>
+	</item>
+
+	<item id="sep_top_1" type="separator"/>
+	
+	<item id="menu1" text="Tea Ops" img="tea3.jpg" imgdis="open_dis.gif" complex="true" >
+		<item id="teaPicking_mgmt" text="Tea Picking" img="tea4.jpg" imgdis="save_dis.gif" complex="true"/>
+		<item id="factory_delivery" text="Factory Delivery" img="truck1.jpg" imgdis="save_dis.gif" complex="true"/>
+		<item id="teaPruning_mgmt" text="Tea Pruning" img="close.gif" imgdis="save_dis.gif" complex="true"/>
+		<item id="tea_bonus" text="Factory Bonus" img="bonus2.jpg" imgdis="save_dis.gif" complex="true"/>
+                <item id="tea_factory_purchases" text="Factory Purchases" img="bonus1.jpg" imgdis="save_dis.gif" complex="true"/>
+	</item>	
+	
+	<item id="sep_top_2" type="separator"/>
+	
+	<item id="menu2" text="Dairy Ops" img="cow2.png" imgdis="open_dis.gif" complex="true" >
+		<item id="dairyProduction_mgmt" text="Production" img="dairy2.jpg" imgdis="save_dis.gif" complex="true"/>	
+		<item id="dairySales_mgmt" text="Sales" img="sales2.jpg" imgdis="save_dis.gif" complex="true"/>	
+		<item id="dairyCorporative_mgmt" text="Coorporative Deliveries" img="truck1.jpg" imgdis="save_dis.gif" complex="true"/>	
+	</item>
+	
+	<item id="sep_top_3" type="separator"/>
+	
+	<item id="menu3" text="Mushroom Ops" img="mushroom1.jpg" imgdis="open_dis.gif" complex="true" >
+		<item id="mushroomProduction_mgmt" text="Production" img="mushroom2.jpg" imgdis="save_dis.gif" complex="true"/>
+		<item id="mushroomSales_mgmt" text="Sales" img="sales2.jpg" imgdis="save_dis.gif" complex="true"/>		
+	</item>
+	
+	<item id="sep_top_4" type="separator"/>
+	
+	<item id="menu4" text="Fish Ops" img="fish3.jpg" imgdis="open_dis.gif" complex="true" >
+		<item id="fishSales_mgmt" text="Sales" img="sales2.jpg" imgdis="save_dis.gif" complex="true"/>
+	</item>
+	
+	<item id="sep_top_5" type="separator"/>
+	
+	<item id="menu5" text="Horticulture Ops" img="hort1.jpg" imgdis="open_dis.gif" complex="true" >
+		<item id="horticulture_mgmt" text="Sales" img="sales2.jpg" imgdis="save_dis.gif" complex="true"/>
+	</item>	
+	
+	<item id="sep_top_6" type="separator"/>
+	
+	<item id="menu6" text="Expenses" img="expense1.jpg" imgdis="open_dis.gif" complex="true" >
+		<item id="expense_capture" text="General Expenses" img="receipt1.jpg" imgdis="save_dis.gif" complex="true"/>
+                <item id="employee_purchases" text="Employee Purchases" img="purchases2.jpg" imgdis="close.gif" complex="true"/>
+		<item id="electricity_expense_capture" text="Electricity Expenses" img="elec1.jpg" imgdis="save_dis.gif" complex="true"/>
+                <item id="vehicle_expense_capture" text="Vehicle Expenses" img="vehicle1.jpg" imgdis="save_dis.gif" complex="true"/>
+	</item>	
+	
+	<item id="sep_top_7" type="separator"/>
+	
+	<item id="menu7" text="P and L" img="PandL1.jpg" imgdis="open_dis.gif" complex="true">
+            <item id="other_dept_income" text="Other Income" img="payment1.jpg" imgdis="" complex="true"/>
+            <item id="tea_PandL" text="Tea P&amp;L" img="tea1.jpg" imgdis="save_dis.gif" complex="true"/>
+            <item id="dairy_PandL" text="Dairy P&amp;L" img="cow1.png" imgdis="save_dis.gif" complex="true"/>
+            <item id="fish_PandL" text="Fish P&amp;L" img="fish1.jpg" imgdis="save_dis.gif" complex="true"/>
+            <item id="mushroom_PandL" text="Mushroom P&amp;L" img="mushroom1.jpg" imgdis="save_dis.gif" complex="true"/>
+            <item id="horticulture_PandL" text="Horticulture Reports" img="hort1.jpg" imgdis="reports2.jpg" complex="true">
+                <item id="hort_greenHse_PandL" text="Green House P&amp;L" img="" imgdis="" complex="true"/>
+                <item id="hort_njogu_PandL" text="Njogu P&amp;L" img="" imgdis="" complex="true"/>
+                <item id="hort_karanja_PandL" text="Karanja P&amp;L" img="" imgdis="save_dis.gif" complex="true"/>                
+                <item id="hort_other_PandL" text="Other P&amp;L" img="" imgdis="" complex="true"/>
+            </item>            
+            <item id="overall_PandL" text="Overall P&amp;L" img="close.gif" imgdis="save_dis.gif" complex="true"/>
+	</item>	
+	
+	<item id="sep_top_8" type="separator"/>
+        
+	<item id="menu8" text="Reports" img="reports3.jpg" imgdis="open_dis.gif" complex="true">
+		<item id="employee_reports" text="Employee Reports" img="report11.jpg" imgdis="reports2.jpg" complex="true">
+			<item id="attendance_rpt" text="Attendance" img="" imgdis="" complex="true"/>
+                        <item id="roles_rpt" text="Roles" img="" imgdis="" complex="true"/>
+			<item id="report_tbd11" text="(TBD)Report 3" img="close.gif" imgdis="save_dis.gif" complex="true"/>
+		</item>
+		<item id="tea_reports" text="Tea Production Reports" img="reports2.jpg" imgdis="open_dis.gif" complex="true">
+			<item id="tea_picked_rpt" text="Tea Picked" img="" imgdis="" complex="true"/>                    
+			<item id="monthly_factory_statement" text="Monthly Statement" img="" imgdis="save_dis.gif" complex="true"/>
+		</item>  
+		<item id="sales_reports" text="Sales Reports" img="icon_grid.gif" imgdis="open_dis.gif" complex="true">
+			<item id="sales_by_dept" text="Sales by Department" img="" imgdis="save_dis.gif" complex="true"/>
+			<item id="sales_by_cust" text="Sales by Customer" img="" imgdis="save_dis.gif" complex="true"/>                        
+			<item id="report_tbd81" text="(TBD)Report" img="" imgdis="save_dis.gif" complex="true"/>
+		</item>                              
+		<item id="expense_reports" text="Expense Reports" img="icon_grid.gif" imgdis="open_dis.gif" complex="true">
+			<item id="expense_by_dept" text="Expenses by Dept" img="" imgdis="save_dis.gif" complex="true"/>
+			<item id="report_tbd43" text="(TBD)Report" img="" imgdis="save_dis.gif" complex="true"/>
+		</item>
+		<item id="other_reports" text="Other Reports" img="icon_grid.gif" imgdis="open_dis.gif" complex="true">
+			<item id="report_tbd54" text="(TBD)Report" img="close.gif" imgdis="save_dis.gif" complex="true"/>
+			<item id="report_tbd64" text="(TBD)Report" img="close.gif" imgdis="save_dis.gif" complex="true"/>
+		</item>
+	</item>	  
+        
+	<item id="sep_top_9" type="separator"/>
+        	
+	<item id="menu9" text="Setup" img="settings.jpg" imgdis="open_dis.gif" complex="true" >
+		
+		<item id="employee_lookups" text="Employee" img="" imgdis="open_dis.gif" complex="true">
+			<item id="employee_type" text="Employment Types" img="" imgdis="save_dis.gif" complex="true"/>
+			<item id="salary_type" text="Salary Types" img="" imgdis="save_dis.gif" complex="true"/>
+		</item>
+		<item id="teaOps_lookups" text="Tea Operations" img="" imgdis="open_dis.gif" complex="true">
+			<item id="teapickingrate" text="Tea Picking Rate" img="" imgdis="save_dis.gif" complex="true"/>
+			<item id="teablock" text="Tea Blocks" img="" imgdis="save_dis.gif" complex="true"/>
+			<item id="teapruningrate" text="Tea Pruning Rate" img="" imgdis="save_dis.gif" complex="true"/>
+                        <item id="teafactoryrate" text="Tea Factory Rate" img="" imgdis="save_dis.gif" complex="true"/>
+		</item>
+		<item id="expense_lookups" text="Expense Mgmt." img="" imgdis="open_dis.gif" complex="true">
+			<item id="customer_new" text="Customer List" img="" imgdis="save_dis.gif" complex="true"/>
+			<item id="expenseactivity" text="Expense Activities" img="" imgdis="save_dis.gif" complex="true"/>	
+			<item id="elecExpenseAllocation" text="Elec Expense Allocation" img="" imgdis="save_dis.gif" complex="true"/>	
+			<item id="vehicleExpenseAllocation" text="Vehicle Expense Allocation" img="" imgdis="save_dis.gif" complex="true"/>	
+                        
+		</item>
+		<item id="fish_type" text="Fish Types" img="" imgdis="save_dis.gif" complex="true"/>
+		<item id="lineofbusiness" text="Lines Of Business" img="" imgdis="save_dis.gif" complex="true"/>
+		<item id="cowname" text="Dairy Cow List" img="" imgdis="save_dis.gif" complex="true"/>
+		<item id="hort_lookups" text="Horticulture" img="" imgdis="open_dis.gif" complex="true">
+                        <item id="hort_produce" text="Produce Types" img="" imgdis="save_dis.gif" complex="true"/>                    
+			<item id="hort_produce_details" text="Produce Type Details" img="" imgdis="save_dis.gif" complex="true"/>
+			<item id="hort_sellingUnits" text="Selling Units" img="" imgdis="save_dis.gif" complex="true"/>
+			<item id="hort_produce_brands" text="Produce Brands" img="" imgdis="save_dis.gif" complex="true"/>
+		</item>                	
+	</item>	
+                
+	<item id="sep_top_10" type="separator"/>
+        
+        <item id="menu10" text="Help" img="help1.jpg" imgdis="" complex="true" >
+            <item id="version" text="Version" img="about1.jpg" imgdis="about1.jpg" complex="true"/>
+        </item>                   
+        
+        <item id="sep_top_11" type="separator"/>
+</menu>

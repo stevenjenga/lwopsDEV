@@ -1,0 +1,219 @@
+@charset "utf-8";
+/* Red Theme */
+
+
+.options-form {
+	padding: 5px;
+border-top-width: 1px;
+border-bottom-width: 2px;
+border-top-style: solid;
+border-bottom-style: solid;
+border-top-color: #8D0909;
+border-bottom-color: #EC0909;
+margin-top: 5px;
+margin-bottom: 5px;
+background-color: #B40707;
+color: white;
+}
+.options-form label {
+	text-align: right;
+	display: inline-block;
+	min-width: 45px;
+	font-weight: bold;
+	margin-right: 5px;
+}
+.options-form select {
+	padding: 3px;
+	height: 25px;
+	width: 200px;
+	border-radius:5px;
+	border: 1px solid #999;
+}
+.options-form label:after{content:' : '}
+.options-form li {
+	margin-top: 3px;
+	margin-bottom: 3px;
+	float: left;
+}
+
+/* Responsive Table Style*/
+
+/**
+ * Structural Style
+ */
+.mediaTable {
+	width:100%;
+	border-collapse:collapse;
+}
+
+.mediaTableWrapper {
+	position: relative;
+}
+
+.mediaTableWrapperWithMenu {
+	padding-top:3em;
+}
+
+
+.mediaTableMenuClosed ul {
+	display:none;
+}
+
+
+
+/**
+ * Active Media Table Rules
+ * theese rules are applied to a table activated by the jQuery plugin.
+ */
+
+.activeMediaTable th, .activeMediaTable td {
+	display: none;
+}
+
+.activeMediaTable th.essential, .activeMediaTable td.essential {
+	display: table-cell;
+	_display:block; /* IE6 Hack */
+}
+
+/* IE7 Hack */
+*+html .activeMediaTable th.essential, *+html .activeMediaTable td.essential { display:block }
+
+
+
+
+
+
+
+
+/* -----[[     B R E A C K      P O I N T S     ]]------------ */
+
+@media screen and (min-width: 768px) {
+	
+	.activeMediaTable th.optional, .activeMediaTable td.optional {
+		display: table-cell;
+		_display:block; /* IE6 Hack */
+	}
+	
+	/* IE7 Hack */
+	*+html .activeMediaTable th.optional, *+html .activeMediaTable td.optional { display:block }
+	
+}
+
+@media screen and (min-width: 1024px) {
+	
+	.activeMediaTable th, .activeMediaTable td {
+		display: table-cell;
+		_display:block; /* IE6 Hack */
+	}
+	
+	/* IE7 Hack */
+	*+html .activeMediaTable th, *+html .activeMediaTable td { display:block }
+	
+}
+
+
+
+
+
+
+
+
+/* -----[[     T H E M I N G     ]]------------ */
+
+/**
+ * Table Style
+ */
+table.mediaTable thead th, .innertableheader {
+	white-space: nowrap;
+	border-bottom: 1px solid #ccc;
+	color: #888;
+}
+
+table.mediaTable th, table.mediaTable td {
+	padding: .5em 1em;
+	text-align: right;
+}
+
+table.mediaTable th:first-child, table.mediaTable td:first-child, table.mediaTable tr td.secondColumn, .stc {
+	text-align: left;
+background-color: #8D0505;
+color: white;
+}
+
+table.mediaTable tbody th, table.mediaTable td {
+	border-bottom: 1px solid #e6e6e6;
+}
+
+
+/**
+ * Menu Style
+ */
+
+.mediaTableMenu {
+	position:absolute;
+	top:0;
+	right:0;
+	
+	background: #fff;
+	border:1px solid #aaa;
+	border-radius:5px;
+	overflow:hidden;
+	box-shadow:2px 2px 4px #ddd;
+	
+}
+
+.mediaTableMenu a {
+	display: block;
+	background: #ddd;
+	padding:0.5em;
+	cursor:pointer;
+	
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-topleft: 5px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	color: #AD0B0B;
+font-weight: bold;
+	
+}
+
+.mediaTableMenu ul {
+	list-style-position:outside;
+	list-style:none;
+	margin:0;
+	padding:0 0.5em;
+}
+
+.mediaTableMenuClosed a {
+	border-radius:5px;
+}
+
+.mediaTableMenu ul li {
+	line-height: 2em;
+}
+
+.mediaTableMenu ul li label {
+	cursor:pointer;
+}
+	
+	#pivot-table thead, .innertableheader {
+	color: #FFF;
+	background-color: #B40707;
+}
+#grand-total {
+	background-color: #8F3434;
+	font-weight: bold;
+}
+.grand-total-row {
+	background-color: #C48484;
+}
+
+
+	#pivot-table thead th {
+	color: #FFF;
+}
+.pv-select-menu{width: 100%;
+padding: 2px;}
+

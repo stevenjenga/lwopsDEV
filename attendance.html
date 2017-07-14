@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Attendance System</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="codebase/dhtmlx.css"/>
+	<link rel="stylesheet" type="text/css" href="codebase_calendar/dhtmlxcalendar.css"/>
+	<link rel="stylesheet" type="text/css" href="calendar/codebase/dhtmlxcalendar.css"></link>
+	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+	<script src="codebase/dhtmlx.js"></script>
+	<script src="codebase/dhtmlXCommon.js"></script>
+	<script src="calendar/codebase/dhtmlxcalendar.js"></script>
+	<style>
+.ev_material{
+    background-color:#33c5cc;
+}
+.odd_material{
+    background-color:#41964e;
+}
+
+.btn {
+  background: #82a4ba;
+  background-image: -webkit-linear-gradient(top, #82a4ba, #2980b9);
+  background-image: -moz-linear-gradient(top, #82a4ba, #2980b9);
+  background-image: -ms-linear-gradient(top, #82a4ba, #2980b9);
+  background-image: -o-linear-gradient(top, #82a4ba, #2980b9);
+  background-image: linear-gradient(to bottom, #82a4ba, #2980b9);
+  -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius: 3px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.button_control {
+  
+    width: 705px;
+    float: right;
+    height: 16px;
+}
+.button_control a {
+
+       width: 52px;
+    float: left;
+    margin: 8px 12px 11px 7px;
+    di
+	.cal_date{
+	    color: red;
+
+    text-align: right;
+    width: 358px;
+	}
+
+
+</style>
+	<script>
+	
+	var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+		var myGrid, myDataProcessor;
+	
+	function get_currentDate_by_obj(d){
+		
+				var now = new Date(d);
+				var day = ("0" + now.getDate()).slice(-2);
+				var month = now.getMonth() ;
+				var month2 = ("0" + (now.getMonth() + 1)).slice(-2);
+				var today = (month)+"/"+(day)+"/"+now.getFullYear();
+				 var normalDate= now.getFullYear()+"/"+month2+"/"+day;
+				 var namedDate = monthNames[month]+" "+day+" "+now.getFullYear();
+		     	 return {'date1':normalDate,'date2':namedDate};
+		           
+		
+		}
+		
+			 
+		function get_currentDate_Arr(){
+		
+				var now = new Date();
+				var day = ("0" + now.getDate()).slice(-2);
+				var month = (now.getMonth() + 1);
+				var today = (month)+"/"+(day)+"/"+now.getFullYear();
+		     	return {'day':day,'month':month,'year':now.getFullYear()};
+		
+		
+		}
+		  		 
+		function get_currentDate(){
+		
+				var now = new Date();
+				var day = ("0" + now.getDate()).slice(-2);
+				var month = ("0" + (now.getMonth() + 1)).slice(-2);
+				var today = (month)+"/"+(day)+"/"+now.getFullYear();
+		     	return today;
+		
+		
+		}
+		
+		console.log(get_currentDate());
+		function doOnLoad(){
+			// init grid and set its parameters (this part as always)
+			myGrid = new dhtmlXGridObject('gridbox');
+			myGrid.setImagePath("codebase/imgs/");
+			myGrid.setHeader("First Name,Initial,Last Name,In?");
+			myGrid.setColTypes("ed,ed,ed,ch");
+			myGrid.setInitWidths("100,50,100,100");
+			myGrid.setColAlign("center,center,center,center");
+			myGrid.setDateFormat("%m/%d/%Y");
+			
+			myGrid.setColSorting("str,str,str,int");
+			myGrid.enableAutoWidth(true);
+			myGrid.init();
+			myGrid.load("functions/get_attendance_data.php"); // used just for demo purposes
+			//
+			myDataProcessor = new dataProcessor("functions/update_attendance_data.php"); // lock feed url
+			myDataProcessor.setTransactionMode("GET", false);
+			myDataProcessor.init(myGrid); // link dataprocessor to the grid
+			var myCalendar = new dhtmlXCalendarObject("box");
+			myCalendar.attachEvent("onClick", function(d){
+						 
+		     document.getElementById("box").value=get_currentDate_by_obj(d).date2;
+		     document.getElementById("box2").value=get_currentDate_by_obj(d).date1;
+			 myGrid.clearAll();
+			 myGrid.load("functions/get_attendance_data.php?date="+get_currentDate_by_obj(d).date1); 
+			
+			
+			
+			});
+			myCalendar.attachEvent("onHide", function(d){
+	
+			});
+		
+			
+		}
+
+		function deleteSelectedItem() {
+			
+			myDataProcessor = new dataProcessor("functions/update_attendance_data.php"); // lock feed url
+			myDataProcessor.setTransactionMode("GET", false);
+			myDataProcessor.init(myGrid); // link dataprocessor to the grid
+			window.reload();
+
+		}
+		
+		var getCurDateArr= get_currentDate_Arr();
+		$(function(){
+		
+		$('#box').val(monthNames[getCurDateArr.month]+" "+getCurDateArr.day+" "+  getCurDateArr.year);
+	
+			});
+		
+		
+	</script>
+</head>
+<body onload="doOnLoad()">
+
+<div class="container">
+
+	 <header> <h1> Employee Attendance</h1></header> 
+
+   <div class="cal_date"  style="color:red;" >
+
+              <input id="box" type="text" value="">
+              <input id="box2" type="hidden" value="">
+   </div>
+	<div id="gridbox" style="width:750px;height:350px;overflow:hidden"></div>
+	<div style="display: none;" class="button_control">
+	<a class="btn" href="javascript:void(0)" onclick="myGrid.addRow((new Date()).valueOf(),['','','','',false,'na',get_currentDate()],myGrid.getRowIndex(myGrid.getSelectedId()))">Add New</a>
+	<a class="btn" href="javascript:void(0)" onclick="myGrid.deleteSelectedItem()">Delete</a>
+	
+	</div>
+	
+	</div>
+</div>
+</body>
+</html>
+</html>
+
+

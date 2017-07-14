@@ -1,0 +1,1496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default" defaultIdMethod="native" namespace="lwops" defaultPhpNamingMethod="underscore">
+  <table name="attendance" idMethod="native" phpName="Attendance" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="attendanceDt" phpName="Attendancedt" type="TIMESTAMP" required="true"/>
+    <column name="attendance_in" phpName="AttendanceIn" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="employeeOidFK">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <index name="employeeOidFK_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <unique name="attendanceDt_UNIQUE">
+      <unique-column name="attendanceDt"/>
+      <unique-column name="employeeOid"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="casualemployeepayslip" idMethod="native" phpName="Casualemployeepayslip" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="opsBiWeeklyCalendarOid" phpName="Opsbiweeklycalendaroid" type="INTEGER" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="dailyRate" phpName="Dailyrate" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="totalTeaWeight" phpName="Totalteaweight" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="teaPayRate" phpName="Teapayrate" type="FLOAT" required="true"/>
+    <column name="teaPay" phpName="Teapay" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="totalParttimeHrs" phpName="Totalparttimehrs" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="parttimePayRate" phpName="Parttimepayrate" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="parttimePay" phpName="Parttimepay" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherDaysWorked" phpName="Otherdaysworked" type="INTEGER" size="2" required="true" defaultValue="0"/>
+    <column name="otherHoursWorked" phpName="Otherhoursworked" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherworkPay" phpName="Otherworkpay" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="elecDeduction" phpName="Elecdeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="medicalDeduction" phpName="Medicaldeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="NSSFdeduction" phpName="Nssfdeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="purchasesDeduction" phpName="Purchasesdeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherDeduction" phpName="Otherdeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherDeductionDescr" phpName="Otherdeductiondescr" type="VARCHAR" size="100"/>
+    <column name="bonus" phpName="Bonus" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="lockDt" phpName="Lockdt" type="DATE"/>
+    <column name="payslipNbr" phpName="Payslipnbr" type="VARCHAR" size="15" required="true" defaultValue="F-PS-0000000000"/>
+    <column name="lockedFlg" phpName="Lockedflg" type="TINYINT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="opsbiweeklycalendar" name="fk_EmployeePayRoll_OpsBiWeeklyCalendar1">
+      <reference local="opsBiWeeklyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="employee" name="fk_EmployeePaySlip_Employee1">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_EmployeePayRoll_OpsBiWeeklyCalendar1_idx">
+      <index-column name="opsBiWeeklyCalendarOid"/>
+    </index>
+    <index name="fk_EmployeePaySlip_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="customer" idMethod="native" phpName="Customer" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="gr_id" phpName="GrId" type="VARCHAR" size="255" required="true"/>
+    <column name="businessName" phpName="Businessname" type="VARCHAR" size="100" required="true" defaultValue="INDIVIDUAL"/>
+    <column name="storeNameNbr" phpName="Storenamenbr" type="VARCHAR" size="10" required="true" defaultValue="00000"/>
+    <column name="contactFirstName" phpName="Contactfirstname" type="VARCHAR" size="20" required="true"/>
+    <column name="contactLastName" phpName="Contactlastname" type="VARCHAR" size="20" required="true"/>
+    <column name="mobileNbr" phpName="Mobilenbr" type="VARCHAR" size="10" required="true" defaultValue="0725551212"/>
+    <column name="address1" phpName="Address1" type="VARCHAR" size="100" required="true" defaultValue="TBD"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="dairycowname" idMethod="native" phpName="Dairycowname" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="45" required="true"/>
+    <column name="birthDt" phpName="Birthdt" type="TIMESTAMP"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="dairypandl" idMethod="native" phpName="Dairypandl" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="lineOfBusinessOid" phpName="Lineofbusinessoid" type="INTEGER" required="true"/>
+    <column name="opsMonthlyCalendarOid" phpName="Opsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="purchases" phpName="Purchases" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherPurchases" phpName="Otherpurchases" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="cooperativeDeductions" phpName="Cooperativedeductions" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="labourParttimeExpense" phpName="Labourparttimeexpense" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="generalExpenses" phpName="Generalexpenses" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="elecExpenses" phpName="Elecexpenses" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="lineofbusiness" name="fk_PandL_LineOfBusiness10">
+      <reference local="lineOfBusinessOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_PandLincome_OpsMonthlyCalendar10">
+      <reference local="opsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_PandL_LineOfBusiness1_idx">
+      <index-column name="lineOfBusinessOid"/>
+    </index>
+    <index name="fk_PandLincome_OpsMonthlyCalendar1_idx">
+      <index-column name="opsMonthlyCalendarOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="dairypandllabourexpensedetail" idMethod="native" phpName="Dairypandllabourexpensedetail" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="DairyPandLOid" phpName="Dairypandloid" type="INTEGER" required="true"/>
+    <column name="EmployeeRoleOid" phpName="Employeeroleoid" type="INTEGER" required="true"/>
+    <column name="expenseAmount" phpName="Expenseamount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="dairypandl" name="fk_DairyPandLlabourExpenseDetail_DairyPandL1">
+      <reference local="DairyPandLOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="employeeroletype" name="fk_TeaPandLlabourExpenseDetail_EmployeeRole1">
+      <reference local="EmployeeRoleOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_TeaPandLlabourExpenseDetail_EmployeeRole1_idx">
+      <index-column name="EmployeeRoleOid"/>
+    </index>
+    <index name="fk_DairyPandLlabourExpenseDetail_DairyPandL1_idx">
+      <index-column name="DairyPandLOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="dairyproduction" idMethod="native" phpName="Dairyproduction" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="gr_id" phpName="GrId" type="VARCHAR" size="255" required="true"/>
+    <column name="DairyCowNameOid" phpName="Dairycownameoid" type="INTEGER" required="true"/>
+    <column name="prodDate" phpName="Proddate" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="amVolume" phpName="Amvolume" type="FLOAT" defaultValue="0"/>
+    <column name="mdVolume" phpName="Mdvolume" type="FLOAT" defaultValue="0"/>
+    <column name="pmVolume" phpName="Pmvolume" type="FLOAT" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="dairycowname" name="fk_DairyProduction_DairyCowNames1">
+      <reference local="DairyCowNameOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_DairyProduction_DairyCowNames1_idx">
+      <index-column name="DairyCowNameOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="dairysales" idMethod="native" phpName="Dairysales" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="salesDt" phpName="Salesdt" type="DATE" required="true"/>
+    <column name="customerOid" phpName="Customeroid" type="INTEGER" required="true"/>
+    <column name="volume" phpName="Volume" type="VARCHAR" size="45" required="true"/>
+    <column name="pricePerLiter" phpName="Priceperliter" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="customer" name="fk_DairySales_Customer1">
+      <reference local="customerOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_DairySales_Customer1_idx">
+      <index-column name="customerOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="elecdeductionrate" idMethod="native" phpName="Elecdeductionrate" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="rate" phpName="Rate" type="FLOAT" required="true"/>
+    <column name="startDt" phpName="Startdt" type="TIMESTAMP" required="true"/>
+    <column name="endDt" phpName="Enddt" type="TIMESTAMP"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <unique name="startDt_UNIQUE">
+      <unique-column name="startDt"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="electricityaccount" idMethod="native" phpName="Electricityaccount" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="accountNbr" phpName="Accountnbr" type="VARCHAR" size="45" defaultValue="00000"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <unique name="accountNbr_UNIQUE">
+      <unique-column name="accountNbr"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="electricityallocation" idMethod="native" phpName="Electricityallocation" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="lineOfBusinessOid" phpName="Lineofbusinessoid" type="INTEGER" required="true"/>
+    <column name="electricityAccountOid" phpName="Electricityaccountoid" type="INTEGER" required="true" defaultValue="1"/>
+    <column name="allocation" phpName="Allocation" type="INTEGER" size="2" required="true" defaultValue="0"/>
+    <column name="startOpsMonthlyCalendarOid" phpName="Startopsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="endtOpsMonthlyCalendarOid" phpName="Endtopsmonthlycalendaroid" type="INTEGER"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="electricityaccount" name="fk_ElectricityAllocation_ElectricityAccount1">
+      <reference local="electricityAccountOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="lineofbusiness" name="fk_ElectricityAllocation_LineOfBusiness1">
+      <reference local="lineOfBusinessOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_ElectricityAllocation_OpsMonthlyCalendar1">
+      <reference local="startOpsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_ElectricityAllocation_OpsMonthlyCalendar2">
+      <reference local="endtOpsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_ElectricityAllocation_LineOfBusiness1_idx">
+      <index-column name="lineOfBusinessOid"/>
+    </index>
+    <index name="fk_ElectricityAllocation_ElectricityAccount1_idx">
+      <index-column name="electricityAccountOid"/>
+    </index>
+    <index name="fk_ElectricityAllocation_OpsMonthlyCalendar2_idx">
+      <index-column name="endtOpsMonthlyCalendarOid"/>
+    </index>
+    <index name="fk_ElectricityAllocation_OpsMonthlyCalendar1_idx">
+      <index-column name="startOpsMonthlyCalendarOid"/>
+    </index>
+    <unique name="effectiveDateRange_UNIQUE">
+      <unique-column name="endtOpsMonthlyCalendarOid"/>
+      <unique-column name="startOpsMonthlyCalendarOid"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="electricityexpense" idMethod="native" phpName="Electricityexpense" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="opsMonthlyCalendarOid" phpName="Opsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="electricityAccounOid" phpName="Electricityaccounoid" type="INTEGER" required="true"/>
+    <column name="amount" phpName="Amount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="electricityaccount" name="fk_ElectricityExpense_ElectricityAccount1">
+      <reference local="electricityAccounOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_ElectricityExpense_OpsMonthlyCalendar1">
+      <reference local="opsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_ElectricityExpense_ElectricityAccount1_idx">
+      <index-column name="electricityAccounOid"/>
+    </index>
+    <index name="fk_ElectricityExpense_OpsMonthlyCalendar1_idx">
+      <index-column name="opsMonthlyCalendarOid"/>
+    </index>
+    <unique name="opsMonthlyCalendarOid_UNIQUE">
+      <unique-column name="opsMonthlyCalendarOid"/>
+      <unique-column name="electricityAccounOid"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employee" idMethod="native" phpName="Employee" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="firstName" phpName="Firstname" type="VARCHAR" size="20" required="true"/>
+    <column name="middleInitial" phpName="Middleinitial" type="VARCHAR" size="1" defaultValue="X"/>
+    <column name="lastName" phpName="Lastname" type="VARCHAR" size="20" required="true"/>
+    <column name="nationalID" phpName="Nationalid" type="CHAR" size="10" required="true" defaultValue="1000000001"/>
+    <column name="mobileNbr" phpName="Mobilenbr" type="CHAR" size="10" required="true" defaultValue="0720000000"/>
+    <column name="resident" phpName="Resident" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="elecDeduction" phpName="Elecdeduction" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+    <column name="ePayment" phpName="Epayment" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="active" phpName="Active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
+    <column name="startDt" phpName="Startdt" type="DATE" required="true"/>
+    <column name="gender" phpName="Gender" type="CHAR" required="true" defaultValue="M"/>
+    <column name="terminated" phpName="Terminated" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="dateOfBirth" phpName="Dateofbirth" type="DATE" required="true"/>
+    <column name="maritalStatus" phpName="Maritalstatus" type="VARCHAR" size="1" required="true"/>
+    <column name="spouseFirstNm" phpName="Spousefirstnm" type="VARCHAR" size="45"/>
+    <column name="spouseLastNm" phpName="Spouselastnm" type="VARCHAR" size="45"/>
+    <column name="spouseMobNbr" phpName="Spousemobnbr" type="VARCHAR" size="10"/>
+    <column name="prevEmployerName" phpName="Prevemployername" type="VARCHAR" size="45" required="true"/>
+    <column name="prevEmployerTelNbr" phpName="Prevemployertelnbr" type="VARCHAR" size="45" required="true"/>
+    <column name="prevEmployerStartDt" phpName="Prevemployerstartdt" type="DATE" required="true"/>
+    <column name="prevEmployerEndDt" phpName="Prevemployerenddt" type="DATE" required="true"/>
+    <column name="prevEmployerLeavingReason" phpName="Prevemployerleavingreason" type="VARCHAR" size="100" required="true"/>
+    <column name="prevEmployerLocation" phpName="Prevemployerlocation" type="VARCHAR" size="100" required="true"/>
+    <column name="workDoneAtPrevEmployer" phpName="Workdoneatprevemployer" type="VARCHAR" size="150" required="true"/>
+    <column name="nxtOfKinFirstNm" phpName="Nxtofkinfirstnm" type="VARCHAR" size="45" required="true"/>
+    <column name="nxtOfKinLastNm" phpName="Nxtofkinlastnm" type="VARCHAR" size="45" required="true"/>
+    <column name="nxtOfKinMobileNbr" phpName="Nxtofkinmobilenbr" type="VARCHAR" size="10" required="true"/>
+    <column name="nxtOfKinResidence" phpName="Nxtofkinresidence" type="VARCHAR" size="45" required="true"/>
+    <column name="nxtOfKinRelationship" phpName="Nxtofkinrelationship" type="VARCHAR" size="10" required="true"/>
+    <column name="nxtOfKinPlaceOfWork" phpName="Nxtofkinplaceofwork" type="VARCHAR" size="75" required="true"/>
+    <column name="comment" phpName="Comment" type="VARCHAR" size="255"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <unique name="empName_UNIQUE">
+      <unique-column name="firstName"/>
+      <unique-column name="middleInitial"/>
+      <unique-column name="lastName"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeeloan" idMethod="native" phpName="Employeeloan" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="loanNbr" phpName="Loannbr" type="VARCHAR" size="15" required="true"/>
+    <column name="loanDate" phpName="Loandate" type="TIMESTAMP" required="true"/>
+    <column name="loanAmount" phpName="Loanamount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="purpose" phpName="Purpose" type="VARCHAR" size="254" required="true" defaultValue="enter purpose..."/>
+    <column name="nbrOfPayPeriods" phpName="Nbrofpayperiods" type="FLOAT" required="true" defaultValue="1.5"/>
+    <column name="opsMonthlyCalendarOid" phpName="Opsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="installmentAmt" phpName="Installmentamt" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_EmployeeLoan_Employee2">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_EmployeeLoan_OpsMonthlyCalendar1">
+      <reference local="opsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_EmployeeLoan_Employee2_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <index name="fk_EmployeeLoan_OpsMonthlyCalendar1_idx">
+      <index-column name="opsMonthlyCalendarOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeeloanpmt" idMethod="native" phpName="Employeeloanpmt" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeLoanOid" phpName="Employeeloanoid" type="INTEGER" required="true"/>
+    <column name="deductionAmt" phpName="Deductionamt" type="FLOAT" required="true"/>
+    <column name="balanceAmount" phpName="Balanceamount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="paid" phpName="Paid" type="VARCHAR" size="1" required="true" defaultValue="0"/>
+    <column name="payslipNbr" phpName="Payslipnbr" type="VARCHAR" size="45" required="true" defaultValue="0"/>
+    <column name="dateDeducted" phpName="Datededucted" type="DATE" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employeeloan" name="fk_EmployeeLoanSchedule_EmployeeLoan1">
+      <reference local="employeeLoanOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_EmployeeLoanSchedule_EmployeeLoan1_idx">
+      <index-column name="employeeLoanOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeeotherdeduction" idMethod="native" phpName="Employeeotherdeduction" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="amount" phpName="Amount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="100" required="true" defaultValue="none"/>
+    <column name="paidFlg" phpName="Paidflg" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="payslipNbr" phpName="Payslipnbr" type="VARCHAR" size="15" required="true" defaultValue="0000000000"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_EmployeeotherDeduction_Employee1">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_EmployeeotherDeduction_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeepurchases" idMethod="native" phpName="Employeepurchases" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="purchaseDt" phpName="Purchasedt" type="TIMESTAMP" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="quantity" phpName="Quantity" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="productUnitType" phpName="Productunittype" type="CHAR" size="2" required="true"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="128" required="true"/>
+    <column name="unitPrice" phpName="Unitprice" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="lineOfBusinessOid" phpName="Lineofbusinessoid" type="INTEGER" required="true" defaultValue="6"/>
+    <column name="paidFlg" phpName="Paidflg" type="TINYINT" required="true" defaultValue="0"/>
+    <column name="payslipNbr" phpName="Payslipnbr" type="VARCHAR" size="45"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_EmployeePurchases_Employee1">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="lineofbusiness" name="fk_EmployeePurchases_LineOfBusiness1">
+      <reference local="lineOfBusinessOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="productunit" name="fk_EmployeePurchases_ProductUnit1">
+      <reference local="productUnitType" foreign="unit"/>
+    </foreign-key>
+    <index name="fk_EmployeePurchases_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <index name="fk_EmployeePurchases_ProductUnit1_idx">
+      <index-column name="productUnitType"/>
+    </index>
+    <index name="fk_EmployeePurchases_LineOfBusiness1_idx">
+      <index-column name="lineOfBusinessOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeerole" idMethod="native" phpName="Employeerole" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="employeeRoleTypeOid" phpName="Employeeroletypeoid" type="INTEGER" required="true"/>
+    <column name="effectiveDt" phpName="Effectivedt" type="DATE" required="true"/>
+    <column name="endDt" phpName="Enddt" type="DATE"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_EmployeeRole_Employee1">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="employeeroletype" name="fk_EmployeeRole_EmployeeRoleType1">
+      <reference local="employeeRoleTypeOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_EmployeeRole_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <index name="fk_EmployeeRole_EmployeeRoleType1_idx">
+      <index-column name="employeeRoleTypeOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeeroletype" idMethod="native" phpName="Employeeroletype" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="role" phpName="Role" type="VARCHAR" size="45" required="true" defaultValue="TEA PICKER"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="100"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeesalaryexpenseallocation" idMethod="native" phpName="Employeesalaryexpenseallocation" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="lineOfBusinessOid" phpName="Lineofbusinessoid" type="INTEGER" required="true"/>
+    <column name="allocation" phpName="Allocation" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="effectiveDt" phpName="Effectivedt" type="TIMESTAMP" required="true"/>
+    <column name="endDt" phpName="Enddt" type="TIMESTAMP"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_EmployeeExpenseAllocation_Employee1">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="lineofbusiness" name="fk_EmployeeExpenseAllocation_LineOfBusiness1">
+      <reference local="lineOfBusinessOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_EmployeeExpenseAllocation_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <index name="fk_EmployeeExpenseAllocation_LineOfBusiness1_idx">
+      <index-column name="lineOfBusinessOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeetermination" idMethod="native" phpName="Employeetermination" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="employeeTerminationTypeOid" phpName="Employeeterminationtypeoid" type="INTEGER" required="true"/>
+    <column name="terminationDate" phpName="Terminationdate" type="DATE" required="true"/>
+    <column name="comments" phpName="Comments" type="VARCHAR" size="200" required="true"/>
+    <column name="gratuityAmt" phpName="Gratuityamt" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="gratuityComments" phpName="Gratuitycomments" type="VARCHAR" size="254"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_EmployeeTermination_Employee1">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="employeeterminationtype" name="fk_EmployeeTermination_EmployeeTerminationType1">
+      <reference local="employeeTerminationTypeOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_EmployeeTermination_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <index name="fk_EmployeeTermination_EmployeeTerminationType1_idx">
+      <index-column name="employeeTerminationTypeOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeeterminationtype" idMethod="native" phpName="Employeeterminationtype" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="type" phpName="Type" type="VARCHAR" size="20" required="true"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="100" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="employeetype" idMethod="native" phpName="Employeetype" namespace="lwops">
+    <column name="type" phpName="Type" type="VARCHAR" size="1" primaryKey="true" required="true" defaultValue="C"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="100" required="true" defaultValue="Casual Labourer"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="expenseactivity" idMethod="native" phpName="Expenseactivity" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="activity" phpName="Activity" type="VARCHAR" size="100" required="true" defaultValue="00000"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="expensecategory" idMethod="native" phpName="Expensecategory" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="COGS" phpName="Cogs" type="INTEGER" size="1" required="true" defaultValue="0"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="100" defaultValue="GENERAL"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="expenses" idMethod="native" phpName="Expenses" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="expenseDate" phpName="Expensedate" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="payee" phpName="Payee" type="VARCHAR" size="100" required="true"/>
+    <column name="narration" phpName="Narration" type="VARCHAR" size="100" required="true"/>
+    <column name="activityOid" phpName="Activityoid" type="INTEGER" required="true"/>
+    <column name="lineOfBusinessOid" phpName="Lineofbusinessoid" type="INTEGER" required="true"/>
+    <column name="amount" phpName="Amount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="categoryOid" phpName="Categoryoid" type="INTEGER" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="expenseactivity" name="fk_Expense_ExpenseActivity1">
+      <reference local="activityOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="lineofbusiness" name="fk_Expense_LineOfBussiness1">
+      <reference local="lineOfBusinessOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="expensecategory" name="fk_Expenses_ExpenseCategory1">
+      <reference local="categoryOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_Expense_ExpenseActivity1_idx">
+      <index-column name="activityOid"/>
+    </index>
+    <index name="fk_Expense_LineOfBussiness1_idx">
+      <index-column name="lineOfBusinessOid"/>
+    </index>
+    <index name="fk_Expenses_ExpenseCategory1_idx">
+      <index-column name="categoryOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="fishpandl" idMethod="native" phpName="Fishpandl" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="lineOfBusinessOid" phpName="Lineofbusinessoid" type="INTEGER" required="true"/>
+    <column name="opsMonthlyCalendarOid" phpName="Opsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="salesIncome" phpName="Salesincome" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherIncome" phpName="Otherincome" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="purchases" phpName="Purchases" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherPurchases" phpName="Otherpurchases" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="labourParttimeExpense" phpName="Labourparttimeexpense" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="generalExpenses" phpName="Generalexpenses" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="elecExpenses" phpName="Elecexpenses" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="lineofbusiness" name="fk_PandL_LineOfBusiness1">
+      <reference local="lineOfBusinessOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_PandLincome_OpsMonthlyCalendar1">
+      <reference local="opsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_PandL_LineOfBusiness1_idx">
+      <index-column name="lineOfBusinessOid"/>
+    </index>
+    <index name="fk_PandLincome_OpsMonthlyCalendar1_idx">
+      <index-column name="opsMonthlyCalendarOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="fishpandllabourexpensedetail" idMethod="native" phpName="Fishpandllabourexpensedetail" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="FishPandLOid" phpName="Fishpandloid" type="INTEGER" required="true"/>
+    <column name="EmployeeRoleOid" phpName="Employeeroleoid" type="INTEGER" required="true"/>
+    <column name="expenseAmount" phpName="Expenseamount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employeeroletype" name="fk_FishPandLlabourExpenseDetail_EmployeeRole1">
+      <reference local="EmployeeRoleOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="fishpandl" name="fk_FishPandLlabourExpenseDetail_FishPandL1">
+      <reference local="FishPandLOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_FishPandLlabourExpenseDetail_FishPandL1_idx">
+      <index-column name="FishPandLOid"/>
+    </index>
+    <index name="fk_FishPandLlabourExpenseDetail_EmployeeRole1_idx">
+      <index-column name="EmployeeRoleOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="fishproduction" idMethod="native" phpName="Fishproduction" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="type" phpName="Type" type="VARCHAR" size="15" required="true"/>
+    <column name="harvestDt" phpName="Harvestdt" type="TIMESTAMP" required="true"/>
+    <column name="pondNbr" phpName="Pondnbr" type="INTEGER" size="1" required="true"/>
+    <column name="weight" phpName="Weight" type="FLOAT" required="true"/>
+    <column name="count" phpName="Count" type="INTEGER" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="fishtype" name="fk_FishProduction_FishType1">
+      <reference local="type" foreign="fishType"/>
+    </foreign-key>
+    <index name="fk_FishProduction_FishType1_idx">
+      <index-column name="type"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="fishsales" idMethod="native" phpName="Fishsales" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="salesDt" phpName="Salesdt" type="DATE" required="true"/>
+    <column name="customerOid" phpName="Customeroid" type="INTEGER" required="true"/>
+    <column name="type" phpName="Type" type="VARCHAR" size="15" required="true"/>
+    <column name="weight" phpName="Weight" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="pricePerKg" phpName="Priceperkg" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="customer" name="fk_FishSales_Customer1">
+      <reference local="customerOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="fishtype" name="fk_FishSales_FishType1">
+      <reference local="type" foreign="fishType"/>
+    </foreign-key>
+    <index name="fk_FishSales_Customer1_idx">
+      <index-column name="customerOid"/>
+    </index>
+    <index name="fk_FishSales_FishType1_idx">
+      <index-column name="type"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="fishtype" idMethod="native" phpName="Fishtype" namespace="lwops">
+    <column name="fishType" phpName="Fishtype" type="VARCHAR" size="15" primaryKey="true" required="true" defaultValue="TILAPIA"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="fteemployeepayslip" idMethod="native" phpName="Fteemployeepayslip" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="opsMonthlyCalendarOid" phpName="Opsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="salaryAmount" phpName="Salaryamount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="dailyRate" phpName="Dailyrate" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="hourlyRate" phpName="Hourlyrate" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="daysMissed" phpName="Daysmissed" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="totalParttimeHrs" phpName="Totalparttimehrs" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="parttimePay" phpName="Parttimepay" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherDaysWorked" phpName="Otherdaysworked" type="INTEGER" size="2" required="true" defaultValue="0"/>
+    <column name="otherDaysPayRate" phpName="Otherdayspayrate" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherworkPay" phpName="Otherworkpay" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="medicalDeduction" phpName="Medicaldeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="NSSFdeduction" phpName="Nssfdeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="loanDeduction" phpName="Loandeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="loanBalance" phpName="Loanbalance" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="advance" phpName="Advance" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="elecDeduction" phpName="Elecdeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="purchasesDeduction" phpName="Purchasesdeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherDeduction" phpName="Otherdeduction" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherDeductionDescr" phpName="Otherdeductiondescr" type="VARCHAR" size="250"/>
+    <column name="bonus" phpName="Bonus" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="payslipNbr" phpName="Payslipnbr" type="VARCHAR" size="15" required="true" defaultValue="F-PS-0000000000"/>
+    <column name="lockDt" phpName="Lockdt" type="DATE"/>
+    <column name="lockedFlg" phpName="Lockedflg" type="TINYINT" required="true" defaultValue="0"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_EmployeePaySlip_Employee10">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_EmployeePaySlip_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <index name="fk_fteEmployeePaySlip_OpsMonthlyCalendar1_idx">
+      <index-column name="opsMonthlyCalendarOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="ftesalaryadvance" idMethod="native" phpName="Ftesalaryadvance" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="opsMonthlyCalendarOid" phpName="Opsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="amount" phpName="Amount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="paid" phpName="Paid" type="CHAR" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_fteSalaryAdvance_Employee1">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_fteSalaryAdvance_OpsMonthlyCalendar1">
+      <reference local="opsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_fteSalaryAdvance_OpsMonthlyCalendar1_idx">
+      <index-column name="opsMonthlyCalendarOid"/>
+    </index>
+    <index name="fk_fteSalaryAdvance_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="horticulturebed" idMethod="native" phpName="Horticulturebed" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="identifier" phpName="Identifier" type="INTEGER" size="3" required="true"/>
+    <column name="type" phpName="Type" type="CHAR" required="true" defaultValue="P"/>
+    <column name="length" phpName="Length" type="INTEGER" size="2" required="true" defaultValue="0"/>
+    <column name="width" phpName="Width" type="INTEGER" size="2" required="true" defaultValue="0"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="horticultureproducebed" idMethod="native" phpName="Horticultureproducebed" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="produceTypeOid" phpName="Producetypeoid" type="INTEGER" required="true"/>
+    <column name="bedOid" phpName="Bedoid" type="INTEGER" required="true"/>
+    <column name="plantedDt" phpName="Planteddt" type="DATE" required="true"/>
+    <column name="harvestDt" phpName="Harvestdt" type="DATE" required="true"/>
+    <column name="endDt" phpName="Enddt" type="DATE" required="true"/>
+    <column name="ganttParentOid" phpName="Ganttparentoid" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="notes" phpName="Notes" type="LONGVARCHAR"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="horticultureproducedetail" name="fk_HorticultureProduceBed_HorticultureProduceType1">
+      <reference local="produceTypeOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="horticulturebed" name="fk_ProduceBed_Bed1">
+      <reference local="bedOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_ProduceBed_Bed1_idx">
+      <index-column name="bedOid"/>
+    </index>
+    <index name="fk_HorticultureProduceBed_HorticultureProduceType1_idx">
+      <index-column name="produceTypeOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="horticultureproducebrand" idMethod="native" phpName="Horticultureproducebrand" namespace="lwops">
+    <column name="name" phpName="Name" type="VARCHAR" size="20" primaryKey="true" required="true" defaultValue="SIMLAWS"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="horticultureproducedetail" idMethod="native" phpName="Horticultureproducedetail" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="horticultureProduceParentoid" phpName="Horticultureproduceparentoid" type="INTEGER" required="true"/>
+    <column name="brand" phpName="Brand" type="VARCHAR" size="20" required="true"/>
+    <column name="variety" phpName="Variety" type="VARCHAR" size="45" required="true"/>
+    <column name="directPlanting" phpName="Directplanting" type="INTEGER" size="1" required="true" defaultValue="0"/>
+    <column name="nurseryDuration" phpName="Nurseryduration" type="INTEGER" size="3" required="true"/>
+    <column name="avgMaturityDays" phpName="Avgmaturitydays" type="INTEGER" size="3" required="true"/>
+    <column name="harvestDurationDays" phpName="Harvestdurationdays" type="INTEGER" size="3" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="horticultureproduceparent" name="fk_HorticultureProduceDetail_HorticultureProduceParent1">
+      <reference local="horticultureProduceParentoid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="horticultureproducebrand" name="fk_HorticultureProduceType_HorticultureProduceBrand1">
+      <reference local="brand" foreign="name"/>
+    </foreign-key>
+    <index name="fk_HorticultureProduceType_HorticultureProduceBrand1_idx">
+      <index-column name="brand"/>
+    </index>
+    <index name="fk_HorticultureProduceDetail_HorticultureProduceParent1_idx">
+      <index-column name="horticultureProduceParentoid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="horticultureproduceparent" idMethod="native" phpName="Horticultureproduceparent" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="45" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="horticultureproducestock" idMethod="native" phpName="Horticultureproducestock" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="produceTypeOid" phpName="Producetypeoid" type="INTEGER" required="true"/>
+    <column name="stockDate" phpName="Stockdate" type="TIMESTAMP" required="true"/>
+    <column name="qty" phpName="Qty" type="FLOAT" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="horticultureproducedetail" name="fk_HorticultureProduceStock_HorticultureProduceType1">
+      <reference local="produceTypeOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_HorticultureProduceStock_HorticultureProduceType1_idx">
+      <index-column name="produceTypeOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="horticulturesales" idMethod="native" phpName="Horticulturesales" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="salesDt" phpName="Salesdt" type="DATE" required="true"/>
+    <column name="customerOid" phpName="Customeroid" type="INTEGER" required="true"/>
+    <column name="horticultureProduceParentOid" phpName="Horticultureproduceparentoid" type="INTEGER" required="true"/>
+    <column name="unit" phpName="Unit" type="VARCHAR" size="3" required="true"/>
+    <column name="quantity" phpName="Quantity" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="unitPrice" phpName="Unitprice" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="customer" name="fk_DefaultTable_Customer1">
+      <reference local="customerOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="horticultureproduceparent" name="fk_HorticultureSales_HorticultureProduceParent1">
+      <reference local="horticultureProduceParentOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="horticulturesellunit" name="fk_HorticultureSales_horticulturesellunit1">
+      <reference local="unit" foreign="unit"/>
+    </foreign-key>
+    <index name="fk_DefaultTable_Customer1_idx">
+      <index-column name="customerOid"/>
+    </index>
+    <index name="fk_HorticultureSales_horticulturesellunit1_idx">
+      <index-column name="unit"/>
+    </index>
+    <index name="fk_HorticultureSales_HorticultureProduceParent1_idx1">
+      <index-column name="horticultureProduceParentOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="horticulturesellunit" idMethod="native" phpName="Horticulturesellunit" namespace="lwops">
+    <column name="unit" phpName="Unit" type="VARCHAR" size="3" primaryKey="true" required="true" defaultValue="KG"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="45" required="true" defaultValue="Kilogram"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="kiambaadairy" idMethod="native" phpName="Kiambaadairy" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="opsMonthlyCalendaOid" phpName="Opsmonthlycalendaoid" type="INTEGER" required="true"/>
+    <column name="societyShares" phpName="Societyshares" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="packingShares" phpName="Packingshares" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="feedExpense" phpName="Feedexpense" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="totalDeductions" phpName="Totaldeductions" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="rate" phpName="Rate" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="deliveredQty" phpName="Deliveredqty" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="rejectedQty" phpName="Rejectedqty" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="acceptedQty" phpName="Acceptedqty" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="grossPay" phpName="Grosspay" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="netPay" phpName="Netpay" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="society" phpName="Society" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="packing" phpName="Packing" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_KiambaaDairy_OpsMonthlyCalendar1">
+      <reference local="opsMonthlyCalendaOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_KiambaaDairy_OpsMonthlyCalendar1_idx">
+      <index-column name="opsMonthlyCalendaOid"/>
+    </index>
+    <unique name="opsMonthlyCalendaOid_UNIQUE">
+      <unique-column name="opsMonthlyCalendaOid"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="lineofbusiness" idMethod="native" phpName="Lineofbusiness" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="department" phpName="Department" type="VARCHAR" size="45" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="medicaldeduction" idMethod="native" phpName="Medicaldeduction" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="deductionFlg" phpName="Deductionflg" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="effectiveDt" phpName="Effectivedt" type="DATE" required="true"/>
+    <column name="endDt" phpName="Enddt" type="DATE"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_NSSF_Employee10">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_NSSF_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="mushroomproduction" idMethod="native" phpName="Mushroomproduction" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="gr_id" phpName="GrId" type="VARCHAR" size="255" required="true"/>
+    <column name="harvestDt" phpName="Harvestdt" type="DATE" required="true"/>
+    <column name="roomNbr" phpName="Roomnbr" type="INTEGER" size="2" required="true" defaultValue="0"/>
+    <column name="cropNbr" phpName="Cropnbr" type="INTEGER" size="4" required="true" defaultValue="0"/>
+    <column name="harvestedWeight" phpName="Harvestedweight" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="mushroomsales" idMethod="native" phpName="Mushroomsales" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="customerOid" phpName="Customeroid" type="INTEGER" required="true"/>
+    <column name="salesDt" phpName="Salesdt" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="weightSold" phpName="Weightsold" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="pricePerKg" phpName="Priceperkg" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="customer" name="fk_MushroomSales_Customer1">
+      <reference local="customerOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_MushroomSales_Customer1_idx">
+      <index-column name="customerOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="nssfdeduction" idMethod="native" phpName="Nssfdeduction" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="deductionFlg" phpName="Deductionflg" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="effectiveDt" phpName="Effectivedt" type="DATE" required="true"/>
+    <column name="endDt" phpName="Enddt" type="DATE"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="fk_NSSF_Employee1">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_NSSF_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="ops24hrtime" idMethod="native" phpName="Ops24hrtime" namespace="lwops">
+    <column name="timeString" phpName="Timestring" type="VARCHAR" size="5" primaryKey="true" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="opsbiweeklycalendar" idMethod="native" phpName="Opsbiweeklycalendar" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="periodStartDate" phpName="Periodstartdate" type="TIMESTAMP" required="true"/>
+    <column name="periodEndDt" phpName="Periodenddt" type="TIMESTAMP" required="true"/>
+    <column name="payDate" phpName="Paydate" type="TIMESTAMP" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="opscalendar" idMethod="native" phpName="Opscalendar" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="opsDate" phpName="Opsdate" type="DATE" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="opsmonthlycalendar" idMethod="native" phpName="Opsmonthlycalendar" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="monthNbr" phpName="Monthnbr" type="INTEGER" size="2" required="true" defaultValue="1"/>
+    <column name="month" phpName="Month" type="VARCHAR" size="3" required="true" defaultValue="JAN"/>
+    <column name="year" phpName="Year" type="INTEGER" size="4" required="true" defaultValue="2017"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="opstimedimension" idMethod="native" phpName="Opstimedimension" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="db_date" phpName="DbDate" type="DATE" required="true"/>
+    <column name="year" phpName="Year" type="INTEGER" required="true"/>
+    <column name="month" phpName="Month" type="INTEGER" required="true"/>
+    <column name="day" phpName="Day" type="INTEGER" required="true"/>
+    <column name="quarter" phpName="Quarter" type="INTEGER" required="true"/>
+    <column name="week" phpName="Week" type="INTEGER" required="true"/>
+    <column name="day_name" phpName="DayName" type="VARCHAR" size="9" required="true"/>
+    <column name="month_name" phpName="MonthName" type="VARCHAR" size="9" required="true"/>
+    <column name="holiday_flag" phpName="HolidayFlag" type="CHAR" defaultValue="0"/>
+    <column name="weekend_flag" phpName="WeekendFlag" type="CHAR" defaultValue="0"/>
+    <column name="event" phpName="Event" type="VARCHAR" size="50"/>
+    <unique name="opsTimeDimension_idx">
+      <unique-column name="year"/>
+      <unique-column name="month"/>
+      <unique-column name="day"/>
+    </unique>
+    <unique name="opsTimeDimension_dbdate_idx">
+      <unique-column name="db_date"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="otherworkassigned" idMethod="native" phpName="Otherworkassigned" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="attendanceOid" phpName="Attendanceoid" type="INTEGER" required="true"/>
+    <column name="lineOfBusinessOid" phpName="Lineofbusinessoid" type="INTEGER" required="true" defaultValue="11"/>
+    <column name="startTm" phpName="Starttm" type="TIME" required="true" defaultValue="00:00:00"/>
+    <column name="endTm" phpName="Endtm" type="TIME" required="true" defaultValue="00:00:00"/>
+    <column name="hours" phpName="Hours" type="INTEGER" size="2" required="true"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="100" required="true" defaultValue="TBD"/>
+    <column name="remarks" phpName="Remarks" type="VARCHAR" size="100"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="attendance" name="fk_DefaultTable_Attendance1">
+      <reference local="attendanceOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="lineofbusiness" name="fk_DefaultTable_LineOfBusiness1">
+      <reference local="lineOfBusinessOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_DefaultTable_Attendance1_idx">
+      <index-column name="attendanceOid"/>
+    </index>
+    <index name="fk_DefaultTable_LineOfBusiness1_idx">
+      <index-column name="lineOfBusinessOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="parttimedetail" idMethod="native" phpName="Parttimedetail" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="attendanceOid" phpName="Attendanceoid" type="INTEGER" required="true"/>
+    <column name="startTm" phpName="Starttm" type="TIME" required="true" defaultValue="00:00:00"/>
+    <column name="endTm" phpName="Endtm" type="TIME" required="true" defaultValue="00:00:00"/>
+    <column name="hours" phpName="Hours" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="workDescription" phpName="Workdescription" type="VARCHAR" size="100" required="true"/>
+    <column name="lineOfBussinessOid" phpName="Lineofbussinessoid" type="INTEGER" required="true"/>
+    <column name="allocatedBy" phpName="Allocatedby" type="VARCHAR" size="45" required="true" defaultValue="Select Supervisor"/>
+    <column name="remarks" phpName="Remarks" type="VARCHAR" size="100" required="true" defaultValue="none"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <column name="gr_id" phpName="GrId" type="VARCHAR" size="45" required="true" defaultValue="0"/>
+    <foreign-key foreignTable="attendance" name="fk_PartTimeDetail_Attendance1">
+      <reference local="attendanceOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="employee" name="fk_PartTimeDetail_Employee1">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="lineofbusiness" name="fk_PartTimeDetail_LineOfBussiness1">
+      <reference local="lineOfBussinessOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_PartTimeDetail_Employee1_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <index name="fk_PartTimeDetail_LineOfBussiness1_idx">
+      <index-column name="lineOfBussinessOid"/>
+    </index>
+    <index name="fk_PartTimeDetail_Attendance1_idx">
+      <index-column name="attendanceOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="productunit" idMethod="native" phpName="Productunit" namespace="lwops">
+    <column name="unit" phpName="Unit" type="CHAR" size="2" primaryKey="true" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="salary" idMethod="native" phpName="Salary" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="employeeOid" phpName="Employeeoid" type="INTEGER" required="true"/>
+    <column name="employeetype" phpName="Employeetype" type="VARCHAR" size="1" required="true"/>
+    <column name="amount" phpName="Amount" type="FLOAT" required="true"/>
+    <column name="salarytype" phpName="Salarytype" type="VARCHAR" size="1" required="true"/>
+    <column name="effectivetDt" phpName="Effectivetdt" type="DATE" required="true"/>
+    <column name="endDt" phpName="Enddt" type="DATE"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updateTmstp" phpName="Updatetmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employee" name="employeeFK">
+      <reference local="employeeOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="employeetype" name="fk_Salary_EmployeeType1">
+      <reference local="employeetype" foreign="type"/>
+    </foreign-key>
+    <foreign-key foreignTable="salarytype" name="fk_Salary_SalaryType1">
+      <reference local="salarytype" foreign="type"/>
+    </foreign-key>
+    <index name="employeeFK_idx">
+      <index-column name="employeeOid"/>
+    </index>
+    <index name="fk_Salary_EmployeeType1_idx">
+      <index-column name="employeetype"/>
+    </index>
+    <index name="fk_Salary_SalaryType1_idx">
+      <index-column name="salarytype"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="salarytype" idMethod="native" phpName="Salarytype" namespace="lwops">
+    <column name="type" phpName="Type" type="VARCHAR" size="1" primaryKey="true" required="true" defaultValue="D"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="45" required="true" defaultValue="Daily"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teablock" idMethod="native" phpName="Teablock" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="blockNbr" phpName="Blocknbr" type="INTEGER" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="10" required="true"/>
+    <column name="blockSize" phpName="Blocksize" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="nbrOfBushes" phpName="Nbrofbushes" type="INTEGER" required="true" defaultValue="0"/>
+    <column name="lastDatePruned" phpName="Lastdatepruned" type="TIMESTAMP" required="true"/>
+    <column name="nextPruneDate" phpName="Nextprunedate" type="TIMESTAMP" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <unique name="name_UNIQUE">
+      <unique-column name="name"/>
+    </unique>
+    <unique name="blockNbr_UNIQUE">
+      <unique-column name="blockNbr"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teabonus" idMethod="native" phpName="Teabonus" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="opsMonthlyCalendarOid" phpName="Opsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="amount" phpName="Amount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_TeaBonus_OpsMonthlyCalendar1">
+      <reference local="opsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_TeaBonus_OpsMonthlyCalendar1_idx">
+      <index-column name="opsMonthlyCalendarOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teafactorydelivery" idMethod="native" phpName="Teafactorydelivery" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="nbrOfTrips" phpName="Nbroftrips" type="INTEGER" size="1" required="true" defaultValue="1"/>
+    <column name="deliveryDt" phpName="Deliverydt" type="TIMESTAMP" required="true"/>
+    <column name="factoryWeight" phpName="Factoryweight" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teafactorypurchases" idMethod="native" phpName="Teafactorypurchases" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="purchaseDt" phpName="Purchasedt" type="DATE" required="true"/>
+    <column name="purchaseType" phpName="Purchasetype" type="VARCHAR" size="20" required="true"/>
+    <column name="quantity" phpName="Quantity" type="INTEGER" size="2" required="true" defaultValue="0"/>
+    <column name="unitPrice" phpName="Unitprice" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="teafactorypurchasetype" name="fk_TeaFactoryPurchases_TeaFactoryPurchaseType1">
+      <reference local="purchaseType" foreign="type"/>
+    </foreign-key>
+    <index name="fk_TeaFactoryPurchases_TeaFactoryPurchaseType1_idx">
+      <index-column name="purchaseType"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teafactorypurchasetype" idMethod="native" phpName="Teafactorypurchasetype" namespace="lwops">
+    <column name="type" phpName="Type" type="VARCHAR" size="20" primaryKey="true" required="true"/>
+    <column name="unit" phpName="Unit" type="VARCHAR" size="5" required="true" defaultValue="KG"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teafactoryrate" idMethod="native" phpName="Teafactoryrate" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="rate" phpName="Rate" type="FLOAT" required="true"/>
+    <column name="startOpsMonthlyCalendarOid" phpName="Startopsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="endOpsMonthlyCalendarOid" phpName="Endopsmonthlycalendaroid" type="INTEGER"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_TeaFactoryRate_OpsMonthlyCalendar1">
+      <reference local="startOpsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_TeaFactoryRate_OpsMonthlyCalendar2">
+      <reference local="endOpsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_TeaFactoryRate_OpsMonthlyCalendar1_idx">
+      <index-column name="startOpsMonthlyCalendarOid"/>
+    </index>
+    <index name="fk_TeaFactoryRate_OpsMonthlyCalendar2_idx">
+      <index-column name="endOpsMonthlyCalendarOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teafactorytriprate" idMethod="native" phpName="Teafactorytriprate" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="rate" phpName="Rate" type="FLOAT" required="true"/>
+    <column name="startOpsMonthlyCalendarOid" phpName="Startopsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="endOpsMonthlyCalendarOid" phpName="Endopsmonthlycalendaroid" type="INTEGER"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_TeaFactoryRate_OpsMonthlyCalendar10">
+      <reference local="startOpsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_TeaFactoryRate_OpsMonthlyCalendar20">
+      <reference local="endOpsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_TeaFactoryRate_OpsMonthlyCalendar1_idx">
+      <index-column name="startOpsMonthlyCalendarOid"/>
+    </index>
+    <index name="fk_TeaFactoryRate_OpsMonthlyCalendar2_idx">
+      <index-column name="endOpsMonthlyCalendarOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teapandl" idMethod="native" phpName="Teapandl" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="lineOfBusinessOid" phpName="Lineofbusinessoid" type="INTEGER" required="true"/>
+    <column name="opsMonthlyCalendarOid" phpName="Opsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="factoryWeight" phpName="Factoryweight" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="factoryPurchaseRate" phpName="Factorypurchaserate" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="purchasesRoundup" phpName="Purchasesroundup" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="purchasesFertilizer" phpName="Purchasesfertilizer" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="purchasesDeliveryBook" phpName="Purchasesdeliverybook" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="otherPurchases" phpName="Otherpurchases" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="bonus" phpName="Bonus" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="tripExpenses" phpName="Tripexpenses" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="labourParttimeExpense" phpName="Labourparttimeexpense" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="cessRate" phpName="Cessrate" type="FLOAT" defaultValue="0"/>
+    <column name="madeTeaExpenses" phpName="Madeteaexpenses" type="FLOAT" defaultValue="0"/>
+    <column name="generalExpenses" phpName="Generalexpenses" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="elecExpenses" phpName="Elecexpenses" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="lineofbusiness" name="fk_PandL_LineOfBusiness11">
+      <reference local="lineOfBusinessOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_PandLincome_OpsMonthlyCalendar11">
+      <reference local="opsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_PandL_LineOfBusiness1_idx">
+      <index-column name="lineOfBusinessOid"/>
+    </index>
+    <index name="fk_PandLincome_OpsMonthlyCalendar1_idx">
+      <index-column name="opsMonthlyCalendarOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teapandllabourexpensedetail" idMethod="native" phpName="Teapandllabourexpensedetail" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="teaPandLOid" phpName="Teapandloid" type="INTEGER" required="true"/>
+    <column name="employeeRoleOid" phpName="Employeeroleoid" type="INTEGER" required="true"/>
+    <column name="otherWorkExpenseAmount" phpName="Otherworkexpenseamount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="salaryExpenseAllocationAmount" phpName="Salaryexpenseallocationamount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="employeeroletype" name="fk_TeaPandLlabourExpenseDetail_EmployeeRole2">
+      <reference local="employeeRoleOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="teapandl" name="fk_TeaPandLlabourExpenseDetail_TeaPandL1">
+      <reference local="teaPandLOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_TeaPandLlabourExpenseDetail_TeaPandL1_idx">
+      <index-column name="teaPandLOid"/>
+    </index>
+    <index name="fk_TeaPandLlabourExpenseDetail_EmployeeRole2_idx">
+      <index-column name="employeeRoleOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teapicking" idMethod="native" phpName="Teapicking" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="attendanceOid" phpName="Attendanceoid" type="INTEGER" required="true"/>
+    <column name="teaBlock_oid" phpName="TeablockOid" type="INTEGER" required="true"/>
+    <column name="weight" phpName="Weight" type="FLOAT" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="attendance" name="fk_TeaPicking_Attendance1">
+      <reference local="attendanceOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="teablock" name="fk_TeaPicking_TeaBlock1">
+      <reference local="teaBlock_oid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_TeaPicking_Attendance1_idx">
+      <index-column name="attendanceOid"/>
+    </index>
+    <index name="fk_TeaPicking_TeaBlock1_idx">
+      <index-column name="teaBlock_oid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teapickingrate" idMethod="native" phpName="Teapickingrate" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="rate" phpName="Rate" type="FLOAT" required="true"/>
+    <column name="startDt" phpName="Startdt" type="TIMESTAMP" required="true"/>
+    <column name="endDt" phpName="Enddt" type="TIMESTAMP"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <unique name="startDt_UNIQUE">
+      <unique-column name="startDt"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teapruning" idMethod="native" phpName="Teapruning" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="attendanceOid" phpName="Attendanceoid" type="INTEGER" required="true"/>
+    <column name="teaBlockOid" phpName="Teablockoid" type="INTEGER" required="true"/>
+    <column name="teaPruningRateOid" phpName="Teapruningrateoid" type="INTEGER" required="true"/>
+    <column name="nbrOfBushesPruned" phpName="Nbrofbushespruned" type="INTEGER" required="true"/>
+    <column name="date" phpName="Date" type="TIMESTAMP" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="attendance" name="fk_TeaPruning_Attendance1">
+      <reference local="attendanceOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="teablock" name="fk_TeaPruning_TeaBlock1">
+      <reference local="teaBlockOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="teapruningrate" name="fk_TeaPruning_TeaPruningRate1">
+      <reference local="teaPruningRateOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_TeaPruning_TeaPruningRate1_idx">
+      <index-column name="teaPruningRateOid"/>
+    </index>
+    <index name="fk_TeaPruning_TeaBlock1_idx">
+      <index-column name="teaBlockOid"/>
+    </index>
+    <index name="fk_TeaPruning_Attendance1_idx">
+      <index-column name="attendanceOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="teapruningrate" idMethod="native" phpName="Teapruningrate" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="ratePerBush" phpName="Rateperbush" type="FLOAT" required="true"/>
+    <column name="startDt" phpName="Startdt" type="TIMESTAMP" required="true"/>
+    <column name="endDt" phpName="Enddt" type="TIMESTAMP"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="vehicle" idMethod="native" phpName="Vehicle" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="registration" phpName="Registration" type="VARCHAR" size="45" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="vehicleexpense" idMethod="native" phpName="Vehicleexpense" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="date" phpName="Date" type="DATE" required="true"/>
+    <column name="vehicleOid" phpName="Vehicleoid" type="INTEGER" required="true"/>
+    <column name="payee" phpName="Payee" type="VARCHAR" size="100" required="true"/>
+    <column name="narration" phpName="Narration" type="VARCHAR" size="100" required="true"/>
+    <column name="amount" phpName="Amount" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="expenseCategoryOid" phpName="Expensecategoryoid" type="INTEGER" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="expensecategory" name="fk_VehicleExpense_ExpenseCategory1">
+      <reference local="expenseCategoryOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="vehicle" name="fk_VehicleExpense_Vehicle1">
+      <reference local="vehicleOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_VehicleExpense_ExpenseCategory1_idx">
+      <index-column name="expenseCategoryOid"/>
+    </index>
+    <index name="fk_VehicleExpense_Vehicle1_idx">
+      <index-column name="vehicleOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="vehicleexpenseallocation" idMethod="native" phpName="Vehicleexpenseallocation" namespace="lwops">
+    <column name="oid" phpName="Oid" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="vehicleOid" phpName="Vehicleoid" type="INTEGER" required="true"/>
+    <column name="lineOfBusinessOid" phpName="Lineofbusinessoid" type="INTEGER" required="true"/>
+    <column name="allocation" phpName="Allocation" type="FLOAT" required="true" defaultValue="0"/>
+    <column name="startOpsMonthlyCalendarOid" phpName="Startopsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="endOpsMonthlyCalendarOid" phpName="Endopsmonthlycalendaroid" type="INTEGER" required="true"/>
+    <column name="createTmstp" phpName="Createtmstp" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="updtTmstp" phpName="Updttmstp" type="TIMESTAMP"/>
+    <foreign-key foreignTable="lineofbusiness" name="fk_VehicleExpenseAllocation_LineOfBusiness1">
+      <reference local="lineOfBusinessOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_VehicleExpenseAllocation_OpsMonthlyCalendar1">
+      <reference local="startOpsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="opsmonthlycalendar" name="fk_VehicleExpenseAllocation_OpsMonthlyCalendar2">
+      <reference local="endOpsMonthlyCalendarOid" foreign="oid"/>
+    </foreign-key>
+    <foreign-key foreignTable="vehicle" name="fk_VehicleExpenseAllocation_Vehilces1">
+      <reference local="vehicleOid" foreign="oid"/>
+    </foreign-key>
+    <index name="fk_VehicleExpenseAllocation_OpsMonthlyCalendar1_idx">
+      <index-column name="startOpsMonthlyCalendarOid"/>
+    </index>
+    <index name="fk_VehicleExpenseAllocation_OpsMonthlyCalendar2_idx">
+      <index-column name="endOpsMonthlyCalendarOid"/>
+    </index>
+    <index name="fk_VehicleExpenseAllocation_LineOfBusiness1_idx">
+      <index-column name="lineOfBusinessOid"/>
+    </index>
+    <index name="fk_VehicleExpenseAllocation_Vehilces1_idx">
+      <index-column name="vehicleOid"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+</database>

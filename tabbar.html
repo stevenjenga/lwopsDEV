@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+		<title>Ladywood OPS</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<script src="codebase/jquery-1.11.1.js"></script>
+		
+		<!-- FOR DHTMLX -->
+		<link rel="stylesheet" type="text/css" href="codebase/fonts/font_roboto/roboto.css"/>
+		<link rel="stylesheet" type="text/css" href="codebase/dhtmlx.css"/>
+		<script src="codebase/dhtmlx.js"></script>
+		<script src="codebase/dhtmlxdataprocessor_debug.js"></script> 
+     <style>
+        html,body { width: 50%; height: 50%; margin: 2; }
+     </style>
+      <script>
+        var myTabbar;
+        var myGrid2;
+          function doOnLoad() {
+          myTabbar = new dhtmlXTabBar("my_tabbar");
+          myTabbar.addTab("a1", "TODO");
+          myTabbar.tabs("a1").setActive();
+          myGrid2 = myTabbar.tabs("a1").attachGrid();
+          myGrid2.setHeader("Item");
+		  myGrid2.init();
+        }
+      </script>      
+  </head>
+  <body onload="doOnLoad()">
+    <div id="my_tabbar" style="height: 100%; width: 100%"></div>
+  </body>
+</html>

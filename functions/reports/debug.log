@@ -1,0 +1,6 @@
+DEBUG 2017-07-14 09:32:22 NAME: get_std_report_data_xml {"":""}
+DEBUG 2017-07-14 09:32:22 NAME: get_std_report_data_xml {"START":"---------------------------------------[get_std_report_data_xml]---------------------------------------------------"}
+DEBUG 2017-07-14 09:32:22 NAME: REQUEST {"reportName":"EXPENSES_BY_DEPT","startDateRange":"2017-01-01","endDateRange":"2017-05-31","dhxr1500017542704":"1"}
+DEBUG 2017-07-14 09:32:22 NAME: GET {"reportName":"EXPENSES_BY_DEPT","startDateRange":"2017-01-01","endDateRange":"2017-05-31","dhxr1500017542704":"1"}
+DEBUG 2017-07-14 09:32:23 NAME: getExpenseByDeptRptData() ["SELECT expenses.oid, expenseDate, payee, narration, activityOid, lineOfBusinessOid, amount, categoryOid, lineofbusiness.department FROM expenses  INNER JOIN lineofbusiness ON lineofbusiness.oid = expenses.lineOfBusinessOid WHERE expenseDate BETWEEN '2017-01-01' AND '2017-05-31' ORDER BY expenseDate ASC"]
+DEBUG 2017-07-14 09:32:23 NAME: get_std_report_data_xml {"END":"---------------------------------------[get_std_report_data_xml]---------------------------------------------------"}

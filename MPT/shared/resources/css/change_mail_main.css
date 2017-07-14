@@ -1,0 +1,54 @@
+/*
+    this css file used in changemail.php
+*/
+
+body {
+    color: #000;
+    direction: ltr;
+    background-image: url(../../../tables/common/img/cream_pixels.png);
+    background-repeat: repeat;
+}
+
+.img {
+    max-width: 100%;
+    height: auto;
+}
+
+.app-logo {
+    margin-top: 5px;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-left: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+#formContainer {
+    margin-top: 40px;
+}
+
+.left-inner-addon {
+    position: relative;
+}
+
+.left-inner-addon input {
+    height: 40px;
+    padding-left: 30px;
+}
+
+.left-inner-addon i {
+    position: absolute;
+    padding: 13px 12px;
+    pointer-events: none;
+}
+
+.popover-content {
+    color: #4e4e4e;
+    font-size: 14px;
+    font-family: "Lobster", Georgia, Times, serif;
+    letter-spacing: 1px;
+}
+
+#oldEmailFeedback, #newEmailFeedback, #confirmPassFeedback {
+    top: 3px;
+}

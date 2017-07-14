@@ -1,0 +1,181 @@
+/*
+    this css file used in setconfig.php
+*/
+
+.lbl-bold {
+    font-weight: bold;
+    color: #2e6e9e;
+    text-align: left;
+}
+
+.lbl-bold:after {
+    content: ' :';
+}
+
+.carousel-indicators > li {
+    border: 1px solid #4e4e4e;
+}
+
+.carousel-indicators > .active {
+    background: #4e4e4e;
+}
+
+input.form-control, select.form-control {
+    height: 30px;
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+* {
+	/*font-family: "Lobster", Georgia, Times, serif;*/;
+}
+
+span.glyphicon-question-sign {
+    position: relative;
+    top: 5px;
+    left: -25px;
+    font-size: 1.4em;
+    color: #99CCFF;
+}
+
+.container {
+    font-size: 12px;
+}
+
+.helper-option {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
+}
+
+.loading-option {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
+}
+
+.shadow {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+/*rgba(35, 28, 28, 0.3);*/;
+}
+
+.shadowX {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+/*rgba(35, 28, 28, 0.3);*/;
+}
+
+.helper-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: white;
+    margin: 5% 10%;
+    width: 80%;
+    height: 80%;
+    padding: 30px;
+}
+
+.loading-container {
+    position: absolute;
+    text-align: center;
+    top: 0px;
+    left: 0px;
+    background: white;
+    margin: 5% 10%;
+    width: 80%;
+    height: 80%;
+	/* padding: 30px; */;
+}
+
+.helper-container > img {
+    width: 90%;
+	/*height: 261px;*/
+    margin: 5% 5%;
+}
+
+.loading-container > img {
+    position: relative;
+    top: 40%;
+}
+
+.helper-container > .helper-nav-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    min-width: 200px;
+}
+
+.helper-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    float: right;
+}
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    z-index: 100;
+}
+
+#logo-cs {
+    position: relative;
+    top: 0px;
+    width: 245px;
+    height: 49px;
+}
+
+.header {
+    position: relative;
+    z-index: 1000;
+    margin: 0px auto;
+}
+
+#cal {
+    position: relative;
+    top: 0px;
+    margin: 0px auto;
+    z-index: 1000;
+}
+
+@media (min-width: 992px) {
+    #cal {
+        position: relative;
+        top: 0px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        position: relative;
+        top: 0px;
+        z-index: 100;
+    }
+    #cal {
+        position: absolute;
+        top: 0px;
+        text-align: left;
+        float: left;
+    }
+}

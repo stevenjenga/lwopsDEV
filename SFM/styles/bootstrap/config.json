@@ -1,0 +1,10 @@
+{
+  "vars": {},
+  "css": [
+    "forms.less",
+    "glyphicons.less",
+    "input-groups.less"
+  ],
+  "js": [],
+  "customizerUrl": "http://getbootstrap.com/customize/?id=bb7257d84cb78e21a787"
+}

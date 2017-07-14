@@ -1,0 +1,6 @@
+Insert values into timeDimension table
+Insert values into partTtimeHrs table
+insert into hort tables
+Clean up LOB values (too many)
+Insert elec acct nbrs
+Insert Kiambaa Dairy as Customer
